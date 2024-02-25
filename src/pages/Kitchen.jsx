@@ -21,6 +21,7 @@ export default function Kitchen(props) {
         console.log(error);
       });
   }, []); //eslint-disable-line
+
   return (
     <Box
       style={{

@@ -23,8 +23,9 @@ export default function RecipeReviewCard(props) {
     },
   });
   const img = cld.image(props.item.images[0]?.cloudinary_id);
+  console.log("img", img.toURL(props.item.images[0]?.cloudinary_id));
   const uri = img.toURL();
-  console.log(uri);
+  console.log("uri");
   return (
     <Card sx={{ width: 345, m: 1 }}>
       <CardHeader

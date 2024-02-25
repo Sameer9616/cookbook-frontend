@@ -25,7 +25,7 @@ export default function Search(props) {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response.data);
       });
   }, [query.query]); //eslint-disable-line
   return (
