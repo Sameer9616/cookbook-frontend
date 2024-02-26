@@ -1,6 +1,6 @@
-import { Box, Chip, Paper, Typography,Button } from "@mui/material";
+import { Box, Chip, Paper, Typography, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { useState, useEffect } from "react";
 import ResponsiveAppBar from "../comp/Appbar";
@@ -8,7 +8,7 @@ import axios from "axios";
 export default function Recipe(props) {
   const { id } = useParams();
   const [data, setData] = useState();
-  const [imgs, setImgs] = useState([]);//eslint-disable-line
+  const [imgs, setImgs] = useState([]); //eslint-disable-line
   useEffect(() => {
     axios({
       method: "post",
@@ -19,12 +19,13 @@ export default function Recipe(props) {
     })
       .then((res) => {
         setData(res.data.recipe);
-        console.log(props.uid._id)
-        console.log(res.data.recipe.userId)
-        res.data?.recipe.images.map((img) => {//eslint-disable-line
+        console.log(props.uid._id);
+        console.log(res.data.recipe.userId);
+        res.data?.recipe.images.map((img) => {
+          //eslint-disable-line
           let cld = new Cloudinary({
             cloud: {
-              cloudName: "jgec",
+              cloudName: "dweju9c1o",
             },
           });
           console.log(cld.image(img.cloudinary_id).toURL());
@@ -35,7 +36,7 @@ export default function Recipe(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);//eslint-disable-line
+  }, [id]); //eslint-disable-line
   return (
     <Box
       style={{
@@ -61,17 +62,31 @@ export default function Recipe(props) {
           {data?.description}
         </Typography>
       </Paper>
-      <Paper sx={{ m: 1, p: 1, display:'flex',backgroundColor:'#ffffff00', justifyContent:'space-around', flexWrap:"wrap" }}>
+      <Paper
+        sx={{
+          m: 1,
+          p: 1,
+          display: "flex",
+          backgroundColor: "#ffffff00",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
         {imgs?.map((img, index) => (
-          <img key={index} alt={data?.name} src={img} style={{
-            width: "250px",
-            height: "250px",
-            borderRadius: "25px",
-            padding:'10px',
-            backgroundColor:'#fff',
-            margin:'5px',
-            boxShadow: `rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px`
-          }} />
+          <img
+            key={index}
+            alt={data?.name}
+            src={img}
+            style={{
+              width: "250px",
+              height: "250px",
+              borderRadius: "25px",
+              padding: "10px",
+              backgroundColor: "#fff",
+              margin: "5px",
+              boxShadow: `rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px`,
+            }}
+          />
         ))}
       </Paper>
       <Paper sx={{ m: 1, p: 1 }}>
@@ -90,16 +105,24 @@ export default function Recipe(props) {
           </Typography>
         ))}
       </Paper>
-      <Button disabled={props.uid._id!==data?.userId} variant="contained" sx={{
-        m: 2,
-        p: 1,
-        width:'fit-content',
-        
-      }}>
-        <Link style={{
-          textDecoration: "none",
-          color:'white'
-        }} to={"/editRecipe/"+data?._id}>EDIT RECIPE</Link>
+      <Button
+        disabled={props.uid._id !== data?.userId}
+        variant="contained"
+        sx={{
+          m: 2,
+          p: 1,
+          width: "fit-content",
+        }}
+      >
+        <Link
+          style={{
+            textDecoration: "none",
+            color: "white",
+          }}
+          to={"/editRecipe/" + data?._id}
+        >
+          EDIT RECIPE
+        </Link>
       </Button>
     </Box>
   );

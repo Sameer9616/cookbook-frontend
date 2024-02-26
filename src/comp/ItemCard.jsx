@@ -9,7 +9,6 @@ import {
   Chip,
 } from "@mui/material";
 import { Cloudinary } from "@cloudinary/url-gen";
-import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
@@ -19,13 +18,12 @@ export default function RecipeReviewCard(props) {
   console.log(props.item.images[0]);
   const cld = new Cloudinary({
     cloud: {
-      cloudName: "jgec",
+      cloudName: "dweju9c1o",
     },
   });
   const img = cld.image(props.item.images[0]?.cloudinary_id);
-  console.log("img", img.toURL(props.item.images[0]?.cloudinary_id));
   const uri = img.toURL();
-  console.log("uri");
+
   return (
     <Card sx={{ width: 345, m: 1 }}>
       <CardHeader
@@ -91,7 +89,7 @@ export default function RecipeReviewCard(props) {
             }, 250);
           }}
         >
-          <DownloadIcon />
+          {/* <DownloadIcon /> */}
         </IconButton>
         <IconButton
           aria-label="edit"
